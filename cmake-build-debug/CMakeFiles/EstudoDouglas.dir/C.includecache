@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/felipe/Área de Trabalho/EstudoDouglas/felipe.c
+felipe.h
+/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
+unistd.h
+-
+sys/types.h
+-
+dirent.h
+-
+stdio.h
+-
+string.h
+-
+regex.h
+-
+stdlib.h
+-
+ctype.h
+-
+
+/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
+

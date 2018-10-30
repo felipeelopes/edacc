@@ -1,0 +1,3 @@
+/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles/EstudoDouglas.dir

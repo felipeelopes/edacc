@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/EstudoDouglas.dir/main.c.o CMakeFiles/EstudoDouglas.dir/felipe.c.o  -o EstudoDouglas 
