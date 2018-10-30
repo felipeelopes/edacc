@@ -25,7 +25,7 @@ void ler_dir(const char *name) {
 
     // Compilamos a regex para buscarmos um arquivo .txt
     if (regcomp(&reg_txt , ".*\\.txt", REG_EXTENDED|REG_NOSUB) != 0) {
-        fprintf(stderr,"[ERRO] erro ao compilar o regex reg_txt\n");
+        printf("[ERRO] erro ao compilar o regex reg_txt\n");
         exit(1);
     }
 
@@ -101,12 +101,12 @@ void ler_txt(const char* caminho){
     // Percorrer o arquivo linha a linha
     while ((fgets(linha, sizeof(linha), txt)) != NULL){
 
-        // Como o fgets le linha a linha, vamos incrementar o contador para  sabermos em qual linha estamos
+        // Como o fgets faz a leitura linha a linha, vamos incrementar o contador para  sabermos em qual linha estamos
         ++linha_atual;
 
         // Verificamos a existencia de quebra de linha e o substituimos
-        // strchr retorna o ponteiro do charactere, entao substituimos diretamente no registro.
-        // aplicado para formatacao nao ficar desconfigurada
+        // strchr retorna o ponteiro do caractere, entao substituimos diretamente no registro.
+        // aplicado para a exibicao do debug nao ficar desconfigurada
         if(ch = strchr(linha, '\n')){
             *ch = '\0';
         }
@@ -118,7 +118,7 @@ void ler_txt(const char* caminho){
             // Analisa se a palavra segue os requisitos com regex
             if((regexec(&reg_palavra_valida, palavra, 0, NULL, 0)) == 0){
 
-                // Formatamos o caminho para conter o numero da lista, para seguire requisitos da documentacao
+                // Formatamos o caminho para conter o numero da linha, para seguir os requisitos da documentacao
                 snprintf(caminho_com_linha, sizeof(caminho_com_linha), "%s:%d", caminho, linha_atual);
                 printf("%s --> %s\n", palavra, caminho_com_linha);
 
