@@ -8,6 +8,7 @@
 struct Noh {
     char palavra[1024];
     struct Noh* proximo;
+    struct Lista* sublista;
 };
 typedef struct Noh Noh;
 
@@ -156,7 +157,7 @@ bool overflow(const Lista* l) {
     return false;
 }
 
-void inserir(Lista* l, const char* palavra, const char caminho_com_linha){
+void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
 
     // Fazemos uma busca para verificar se a palavra ja existe na lista
     Noh* busca_resultado = busca(l, palavra);
@@ -165,6 +166,9 @@ void inserir(Lista* l, const char* palavra, const char caminho_com_linha){
     if(busca_resultado == NULL){
         // cria um novo noh que guardara a nova palavra
         Noh* n = malloc(sizeof(Noh));
+
+        // cria uma sub-lista para cada Noh adicionado.
+        n->sublista = cria();
 
         // Copia a palavra passada pelo parametro para o noh criado
         strcpy(n->palavra, palavra);
@@ -184,6 +188,8 @@ void inserir(Lista* l, const char* palavra, const char caminho_com_linha){
                 // Retorno < 0 a string eh 'maior' que a proxima
                 // Retorno = 0 a string eh igual a proxima
                 if(strcasecmp(u->proximo->palavra, palavra) > 0 && u->proximo != NULL){
+                    // Adiciono o caminho no noh que estou inserindo
+                    inserir_sublista(n->sublista, caminho_com_linha);
 
                     // Marco o proximo elemento do noh que estou adicionando como a prox palavra
                     n->proximo = u->proximo;
@@ -205,9 +211,34 @@ void inserir(Lista* l, const char* palavra, const char caminho_com_linha){
             l->cabeca = n;
         }
     } else {
-        // TODO: adicionar sub-listas caso a palavra ja exista
-        // Caso a palavra exista temos que adicionar o caminho:linha onde foi encontrado em sua sub-lista
-        printf("Palavra ja na lista! %s\n", busca_resultado->palavra);
+
+        // Caso a palavra ja exista na lista, devemos somente adicionar o caminho em que sua repetida foi achada.
+        inserir_sublista(busca_resultado->sublista, caminho_com_linha);
+    }
+}
+
+void inserir_sublista(Lista* l, const char* caminho_com_linha){
+
+    // cria um novo noh que guardara a nova palavra
+    Noh* n = malloc(sizeof(Noh));
+
+    // Copia a palavra passada pelo parametro para o noh criado
+    strcpy(n->palavra, caminho_com_linha);
+
+    // Define o proximo Noh do novo Noh como NULL
+    n->proximo = NULL;
+    ++l->total_palavras;
+
+    // Caso a lista nao esteja vazia temos que buscar a posicao em ordem alfabetica para inserir o novo Noh
+    if (!underflow(l)) {
+        Noh* u = l->cabeca;
+        while (u->proximo != NULL) {
+            u = u->proximo;
+        }
+        u->proximo = n;
+    } else {
+        n->proximo = l->cabeca;
+        l->cabeca = n;
     }
 }
 
@@ -230,8 +261,9 @@ void imprime(const Lista* l) {
 Noh* busca(const Lista* l, char* palavra){
     Noh* n = l->cabeca;
     while (n != NULL) {
+
         // Caso eu encontre a palavra eu retorno o noh onde a mesma se encontra caso contrario retorno NULL
-        // Optei por usar o strcacmp para ignorar o casesensitive
+        // Optei por usar o strcasecmp para ignorar o casesensitive
         if (strcasecmp(n->palavra, palavra) == 0) {
             return n;
         }

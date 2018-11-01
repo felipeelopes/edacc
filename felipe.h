@@ -33,6 +33,7 @@ void imprime(const Lista*);
 Noh* busca(const Lista*, char*);
 //void inserir(Lista*, TipoChave);
 
-void inserir(Lista*, const char* palavra, const char caminho_com_linha);
+void inserir(Lista*, const char* palavra, const char* caminho_com_linha);
+void inserir_sublista(Lista*, const char* caminho_com_linha);
 
 #endif //FELIPE_H
