@@ -9,11 +9,15 @@
 /home/felipe/Área de Trabalho/EstudoDouglas/felipe.c
 felipe.h
 /home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
+
+/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
 unistd.h
 -
 sys/types.h
 -
 dirent.h
+-
+stdbool.h
 -
 stdio.h
 -
@@ -25,6 +29,4 @@ stdlib.h
 -
 ctype.h
 -
-
-/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
 

@@ -4,7 +4,35 @@
 #ifndef FELIPE_H
 #define FELIPE_H
 
-void ler_dir(const char*);
-void ler_txt(const char*);
+#include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <regex.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+struct Noh;
+typedef  struct Noh Noh;
+struct Lista;
+typedef struct Lista Lista;
+
+
+// Operacoes com diretorios e arquivos
+void ler_dir(Lista*, const char*);
+void ler_txt(Lista*, const char*);
+
+// Operacoes TAD
+Lista* cria(void);
+void destroi(Lista*);
+bool underflow(const Lista*);
+bool overflow(const Lista*);
+void imprime(const Lista*);
+Noh* busca(const Lista*, char*);
+//void inserir(Lista*, TipoChave);
+
+void inserir(Lista*, const char* palavra, const char caminho_com_linha);
 
 #endif //FELIPE_H

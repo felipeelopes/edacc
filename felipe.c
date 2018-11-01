@@ -3,19 +3,30 @@
 //
 
 #include "felipe.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <string.h>
-#include <regex.h>
-#include <stdlib.h>
-#include <ctype.h>
+
+
+struct Noh {
+    char palavra[1024];
+    struct Noh* proximo;
+};
+typedef struct Noh Noh;
+
+struct Lista {
+    int total_palavras;
+    Noh* cabeca;
+};
+
+Lista* cria(void) {
+    Lista* l = malloc(sizeof(Lista));
+    l->total_palavras = 0;
+    l->cabeca = NULL;
+    return l;
+}
 
 /*
  * Funcao responsavel por varrer o diretorio e sub-diretorios do caminho informado pelo usuario
  * */
-void ler_dir(const char *name) {
+void ler_dir(Lista* l, const char *name) {
     DIR *dir;
     struct dirent *entrada;
 
@@ -51,7 +62,7 @@ void ler_dir(const char *name) {
             snprintf(caminho, sizeof(caminho), "%s/%s", name, entrada->d_name);
 
             // De forma recursiva entramos no novo diretorio encontrado
-            ler_dir(caminho);
+            ler_dir(l, caminho);
 
 
         // Caso seja arquivo
@@ -64,7 +75,7 @@ void ler_dir(const char *name) {
             if ((regexec(&reg_txt, caminho, 0, (regmatch_t *)NULL, 0)) != 0){
                 continue;
             } else {
-                ler_txt(caminho); // para cada txt encontrado devemos abrir o mesmo e adicionar seu conteudo na pilha
+                ler_txt(l, caminho); // para cada txt encontrado devemos abrir o mesmo e adicionar seu conteudo na pilha
             }
         }
     }
@@ -75,7 +86,7 @@ void ler_dir(const char *name) {
 /*
  * Funcao responsavel por ler o conteudo do txt e passar seu conteudo para a fila
  * */
-void ler_txt(const char* caminho){
+void ler_txt(Lista* l, const char* caminho){
 
     FILE *txt;
     txt = fopen(caminho, "r");
@@ -120,15 +131,111 @@ void ler_txt(const char* caminho){
 
                 // Formatamos o caminho para conter o numero da linha, para seguir os requisitos da documentacao
                 snprintf(caminho_com_linha, sizeof(caminho_com_linha), "%s:%d", caminho, linha_atual);
-                printf("%s --> %s\n", palavra, caminho_com_linha);
+                //printf("%s --> %s\n", palavra, caminho_com_linha);
 
                 // Colocamos palavra e caminho:linha onde foi encontrada
-                //enqueue(palavra, caminho_com_linha);
+                inserir(l, palavra, caminho_com_linha);
             }
             palavra = strtok(NULL, " \t");
         }
     }
     fclose(txt);
     free(txt);
-    free(palavra);
+}
+
+bool underflow(const Lista* l) {
+    return l->cabeca == NULL;
+}
+
+bool overflow(const Lista* l) {
+    Noh* f = malloc(sizeof(Noh));
+    if (f == NULL) {
+        return true;
+    }
+    free(f);
+    return false;
+}
+
+void inserir(Lista* l, const char* palavra, const char caminho_com_linha){
+
+    // Fazemos uma busca para verificar se a palavra ja existe na lista
+    Noh* busca_resultado = busca(l, palavra);
+
+    // Caso nao exista, adicionamos a mesma na lista. O retorno eh NULL se nao existir, se existir o retorno eh o ponteiro para o Noh que contem a palavra
+    if(busca_resultado == NULL){
+        // cria um novo noh que guardara a nova palavra
+        Noh* n = malloc(sizeof(Noh));
+
+        // Copia a palavra passada pelo parametro para o noh criado
+        strcpy(n->palavra, palavra);
+
+        // Define o proximo Noh do novo Noh como NULL
+        n->proximo = NULL;
+        ++l->total_palavras;
+
+        // Caso a lista nao esteja vazia temos que buscar a posicao em ordem alfabetica para inserir o novo Noh
+        if (!underflow(l)) {
+            Noh *u = l->cabeca;
+            while (u->proximo != NULL) {
+
+                // Aqui comparamos se a palavra atual deve estar antes que a proxima palavra armazenada na lista
+                // A funcao strcasecmp ignora o casesensitive, entao A e a eh a mesma coisa.
+                // Retorno > 0 a string eh 'menor' que a proxima
+                // Retorno < 0 a string eh 'maior' que a proxima
+                // Retorno = 0 a string eh igual a proxima
+                if(strcasecmp(u->proximo->palavra, palavra) > 0 && u->proximo != NULL){
+
+                    // Marco o proximo elemento do noh que estou adicionando como a prox palavra
+                    n->proximo = u->proximo;
+                    u->proximo = n;
+
+                    // Paro o loop pois ja adicionei a palavra na lista
+                    break;
+                } else if(u->proximo == NULL){ // Se chegar aqui significa que estou no ultimo Noh, entao so adicionamos a palavra
+                    u->proximo = n;
+                }
+
+                // Andamos para o proximo elemento do da lista
+                u = u->proximo;
+            }
+
+            u->proximo = n;
+        } else {
+            n->proximo = l->cabeca;
+            l->cabeca = n;
+        }
+    } else {
+        // TODO: adicionar sub-listas caso a palavra ja exista
+        // Caso a palavra exista temos que adicionar o caminho:linha onde foi encontrado em sua sub-lista
+        printf("Palavra ja na lista! %s\n", busca_resultado->palavra);
+    }
+}
+
+void imprime(const Lista* l) {
+    if (underflow(l)) {
+        printf("(VAZIA)");
+        return;
+    }
+    printf("(CABECA) ");
+    Noh* n = l->cabeca;
+    while (n != NULL) {
+        printf("%s", n->palavra);
+        printf("-->");
+        n = n->proximo;
+    }
+    printf("NULL (CAUDA)\n");
+    printf("Total de palavras armazenadas: %d\n", l->total_palavras);
+}
+
+Noh* busca(const Lista* l, char* palavra){
+    Noh* n = l->cabeca;
+    while (n != NULL) {
+        // Caso eu encontre a palavra eu retorno o noh onde a mesma se encontra caso contrario retorno NULL
+        // Optei por usar o strcacmp para ignorar o casesensitive
+        if (strcasecmp(n->palavra, palavra) == 0) {
+            return n;
+        }
+        n = n->proximo;
+    }
+    return NULL;
 }
