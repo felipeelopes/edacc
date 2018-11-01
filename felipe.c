@@ -157,6 +157,11 @@ bool overflow(const Lista* l) {
     return false;
 }
 
+/*
+ * Insere novas palavras na lista.
+ * Para cada palavra criada, uma sublista tambem eh criada, para conter o caminho:linha
+ * Caso a palavra seja repetida, somente seu caminho:linha eh adicionado na sublista
+ * */
 void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
 
     // Fazemos uma busca para verificar se a palavra ja existe na lista
@@ -217,6 +222,9 @@ void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
     }
 }
 
+/*
+ * Adiciona caminho:linha na sublista de um Noh(Palavra)
+ * */
 void inserir_sublista(Lista* l, const char* caminho_com_linha){
 
     // cria um novo noh que guardara a nova palavra
