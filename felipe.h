@@ -35,5 +35,6 @@ Noh* busca(const Lista*, char*);
 
 void inserir(Lista*, const char* palavra, const char* caminho_com_linha);
 void inserir_sublista(Lista*, const char* caminho_com_linha);
+void salvar(const Lista*);
 
 #endif //FELIPE_H

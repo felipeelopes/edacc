@@ -271,3 +271,20 @@ Noh* busca(const Lista* l, char* palavra){
     }
     return NULL;
 }
+
+void salvar(const Lista* lista){
+    int salv;
+    FILE *arq;
+    char nomearq[1024];
+    printf("Digite o nome do arquivo para ser salvo\n");
+    scanf('%c', &nomearq);
+
+    arq = fopen(nomearq, "wb");
+    if (arq != NULL) {
+        salv = fwrite(lista, sizeof(Lista),1, arq);
+        }
+    else
+        puts("Erro: abertura do arquivo");
+}
+
+
