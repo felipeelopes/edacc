@@ -266,6 +266,11 @@ void imprime(const Lista* l) {
     printf("Total de palavras armazenadas: %d\n", l->total_palavras);
 }
 
+
+/*
+ * Funcao para procurar uma palavra e retornar o Noh caso ache.
+ * Essa funcao eh usada ao inserir uma nova palavra
+ * */
 Noh* busca(const Lista* l, char* palavra){
     Noh* n = l->cabeca;
     while (n != NULL) {
@@ -278,6 +283,35 @@ Noh* busca(const Lista* l, char* palavra){
         n = n->proximo;
     }
     return NULL;
+}
+
+/*
+ * Funcao utilizada para imprimir palavras encontradas e o numero de ocorrencias da mesma
+ * Chamado no menu principal
+ * */
+void busca_palavra(const Lista* l, char* palavra){
+    Noh* np = l->cabeca;
+    while (np != NULL){
+
+        // Lembrando, nao estamos considerando casesensitive
+        if(strcasecmp(np->palavra, palavra) == 0){
+
+            Noh* ns = np->sublista->cabeca;
+            printf("Palavra encontrada nos seguintes locais: \n");
+
+            // Imprime a sublista do Noh, contendo todos os caminhos:linhas encontrados.
+            while(ns != NULL){
+                printf("%s\n", ns->palavra);
+                ns = ns->proximo;
+            }
+            printf("Total de ocorrencias dessa palavra: %d\n", np->sublista->total_palavras);
+
+            // Caso chegue aqui, entao achamos a palavra, vamos encessar o laco
+            return;
+        }
+        np = np->proximo;
+    }
+    printf(" A palavra digitada nao foi encontrada.\n");
 }
 
 void salvar(const Lista* lista){

@@ -31,6 +31,7 @@ bool underflow(const Lista*);
 bool overflow(const Lista*);
 void imprime(const Lista*);
 Noh* busca(const Lista*, char*);
+void busca_palavra(const Lista*, char*);
 //void inserir(Lista*, TipoChave);
 
 void inserir(Lista*, const char* palavra, const char* caminho_com_linha);
