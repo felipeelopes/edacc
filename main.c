@@ -20,16 +20,12 @@ int main(int argc, char *argv[]) {
         do {
             printf("1. Busca palavra\n");
             printf("2. Atualizar o Indice\n");
-            printf("3. Adicionar palavras\n");
-            printf("4. Excluir palavras\n");
-            printf("5. Adicionar ocorrencias\n");
-            printf("6. Excluir ocorrencias\n");
-            printf("7. Salvar o indice em arquivo\n");
-            printf("8. Recuperar indice remissivo\n");
+            printf("3. Salvar o indice em arquivo\n");
+            printf("4. Recuperar indice remissivo\n");
 
 
             scanf("%d", &opcao_escolhida);
-            system("clear");
+            //system("clear");
 
             char palavra[1024];
             char caminho;
@@ -53,9 +49,11 @@ int main(int argc, char *argv[]) {
                     break;
 
                 case 3:
-                    printf("Digite uma palavra para inserir e o caminho \n");
-                    scanf('%c', '%c', &palavra, &caminho);
-                    //inserir(palavra, caminho);
+                    printf("Digite o caminho e nome do arquivo, ex: /home/felipe/salvo.txt \n");
+                    scanf("%s", palavra);
+                    salvar(lista, palavra);
+                    puts("Digite qualquer tecla para continuar...\n");
+                    getchar();getchar();
                     break;
 
                 case 4:

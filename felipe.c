@@ -192,7 +192,7 @@ void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
                 // Retorno > 0 a string eh 'menor' que a proxima
                 // Retorno < 0 a string eh 'maior' que a proxima
                 // Retorno = 0 a string eh igual a proxima
-                if(strcasecmp(u->proximo->palavra, palavra) > 0 && u->proximo != NULL){
+                if(strcasecmp(u->proximo->palavra, palavra) > 0){
                     // Adiciono o caminho no noh que estou inserindo
                     inserir_sublista(n->sublista, caminho_com_linha);
 
@@ -216,7 +216,6 @@ void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
             l->cabeca = n;
         }
     } else {
-
         // Caso a palavra ja exista na lista, devemos somente adicionar o caminho em que sua repetida foi achada.
         inserir_sublista(busca_resultado->sublista, caminho_com_linha);
     }
@@ -314,19 +313,48 @@ void busca_palavra(const Lista* l, char* palavra){
     printf(" A palavra digitada nao foi encontrada.\n");
 }
 
-void salvar(const Lista* lista){
-    int salv;
+void salvar(const Lista* l, const char* caminho_arquivo){
     FILE *arq;
-    char nomearq[1024];
-    printf("Digite o nome do arquivo para ser salvo\n");
-    scanf('%c', &nomearq);
 
-    arq = fopen(nomearq, "wb");
+    arq = fopen(caminho_arquivo, "wb");
+
+    // Verifica se o arquivo foi criado e aberto
     if (arq != NULL) {
-        salv = fwrite(lista, sizeof(Lista),1, arq);
+        // Cria ponteiro para lista
+        Noh *np = l->cabeca;
+
+        // Faz leitura da lista
+        while (np != NULL) {
+            //Escrever o noh atual no arquivo
+            fprintf(arq, "%s*", np->palavra);
+
+            // Faz a leitura da sub-lista caso exista
+            if(!underflow(np->sublista)) {
+                // Cria ponteiro para sublista do noh atual
+                Noh *ns = np->sublista->cabeca;
+
+                while (ns != NULL) {
+
+                    // Se eu estiver no ultimo noh nao coloco o token ;
+                    if (ns->proximo == NULL) {
+                        fprintf(arq, "%s\n", ns->palavra);
+                    } else {
+                        // Caso eu nao seja o ultimo Noh eu adiciono o token ; para separar os Nohs da sublista
+                        fprintf(arq, "%s;", ns->palavra);
+                    }
+                    ns = ns->proximo;
+                }
+                free(ns);
+            } else {
+                fputs("\n", arq);
+            }
+            np = np->proximo;
         }
-    else
-        puts("Erro: abertura do arquivo");
+    } else {
+        printf("[ERRO] Falha ao salvar o arquivo, verifique as permissoes do diretorio\n");
+    }
+    printf("\n\n[INFO] Arquivo salvo com sucesso no caminho: %s\n", caminho_arquivo);
+    fclose(arq);
 }
 
 

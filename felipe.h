@@ -36,6 +36,6 @@ void busca_palavra(const Lista*, char*);
 
 void inserir(Lista*, const char* palavra, const char* caminho_com_linha);
 void inserir_sublista(Lista*, const char* caminho_com_linha);
-void salvar(const Lista*);
+void salvar(const Lista*, const char*);
 
 #endif //FELIPE_H
