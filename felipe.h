@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#define MAX_SIZE 1024
+
 struct Noh;
 typedef  struct Noh Noh;
 struct Lista;
@@ -32,10 +34,9 @@ bool overflow(const Lista*);
 void imprime(const Lista*);
 Noh* busca(const Lista*, char*);
 void busca_palavra(const Lista*, char*);
-//void inserir(Lista*, TipoChave);
-
-void inserir(Lista*, const char* palavra, const char* caminho_com_linha);
-void inserir_sublista(Lista*, const char* caminho_com_linha);
+Noh* inserir(Lista*, const char* palavra, const char*);
+void inserir_sublista(Lista*, const char*);
 void salvar(const Lista*, const char*);
+void carregar_arquivo(Lista*, const char*);
 
 #endif //FELIPE_H

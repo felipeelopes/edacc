@@ -33,18 +33,20 @@
     <session id="273452790">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.25" value="4" />
+          <entry key="project.open.time.25" value="6" />
+          <entry key="project.open.time.26" value="2" />
+          <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.28" value="1" />
-          <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.29" value="2" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,15 +64,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="13619" />
-          <entry key="h" value="268" />
-          <entry key="txt" value="444" />
+          <entry key="c" value="17260" />
+          <entry key="h" value="357" />
+          <entry key="txt" value="669" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="13887" />
-          <entry key="PLAIN_TEXT" value="444" />
+          <entry key="ObjectiveC" value="17617" />
+          <entry key="PLAIN_TEXT" value="669" />
         </counts>
       </usages-collector>
     </session>
@@ -80,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="900">
+              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -89,8 +91,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/felipe.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="289" column="28" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="28" />
+            <state relative-caret-position="223">
+              <caret line="389" column="116" selection-start-line="389" selection-start-column="116" selection-end-line="389" selection-end-column="116" />
             </state>
           </provider>
         </entry>
@@ -98,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/felipe.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="58">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="16" />
               <folding>
                 <element signature="e#75#94#0" expanded="true" />
               </folding>
@@ -112,15 +114,23 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ch</find>
-      <find>inserir</find>
       <find>n-</find>
       <find>cria</find>
       <find>Inserin</find>
       <find>busca</find>
       <find>word</find>
+      <find>underflow</find>
+      <find>destui</find>
+      <find>dest</find>
+      <find>linha</find>
+      <find>strtok</find>
+      <find>inserir</find>
+      <find>ch = '\0';</find>
+      <find>1024</find>
     </findStrings>
     <replaceStrings>
       <replace>palavra</replace>
+      <replace>MAX_SIZE</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -129,8 +139,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/felipe.h" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/felipe.h" />
         <option value="$PROJECT_DIR$/felipe.c" />
       </list>
     </option>
@@ -212,7 +222,13 @@
       <workItem from="1541115310877" duration="347000" />
       <workItem from="1541116305384" duration="610000" />
       <workItem from="1541364696969" duration="186000" />
-      <workItem from="1541364923893" duration="2427000" />
+      <workItem from="1541364923893" duration="2686000" />
+      <workItem from="1541460717153" duration="698000" />
+      <workItem from="1541585929416" duration="5912000" />
+      <workItem from="1541624638612" duration="406000" />
+      <workItem from="1541626739635" duration="620000" />
+      <workItem from="1541635883222" duration="1538000" />
+      <workItem from="1541710596374" duration="1200000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionado argumentos ao software. Agora é necessário passar o caminho do diretório no executável.">
       <created>1540991432457</created>
@@ -242,11 +258,25 @@
       <option name="project" value="LOCAL" />
       <updated>1541114927859</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adicionado busca de palavras, mostrando os caminhos e numero de ocorrencias da palavra.">
+      <created>1541367425347</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1541367425347</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Agora é possível salvar a estrutura das listas em um arquivo&#10;* Terminador para Noh&#10;; Terminador para SubNoh">
+      <created>1541588400213</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1541588400213</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57273000" />
+    <option name="totallyTimeSpent" value="67906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="741" extended-state="6" />
@@ -257,7 +287,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.71266234" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2224026" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3987034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -266,7 +296,7 @@
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32792208" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.21753247" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.08928572" />
       <window_info anchor="bottom" id="CMake" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -307,14 +337,16 @@
     <MESSAGE value="Suporte a lista.&#10;Agora as palavras encontradas são adicionadas em uma lista em ordem alfabética" />
     <MESSAGE value="Agora eh gerado uma sublista para cada palavra encontrada.&#10;Em palavras repetidas é adicionado um novo noh com o caminho onde a mesma foi encontrada" />
     <MESSAGE value="Modificado comentarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificado comentarios" />
+    <MESSAGE value="Adicionado busca de palavras, mostrando os caminhos e numero de ocorrencias da palavra." />
+    <MESSAGE value="Agora é possível salvar a estrutura das listas em um arquivo&#10;* Terminador para Noh&#10;; Terminador para SubNoh" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agora é possível salvar a estrutura das listas em um arquivo&#10;* Terminador para Noh&#10;; Terminador para SubNoh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/felipe.h</url>
-          <line>18</line>
+          <line>20</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -331,16 +363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/felipe.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#75#94#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/txt/b.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -350,15 +372,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="900">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/felipe.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="16" />
+          <folding>
+            <element signature="e#75#94#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/felipe.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="289" column="28" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="28" />
+        <state relative-caret-position="223">
+          <caret line="389" column="116" selection-start-line="389" selection-start-column="116" selection-end-line="389" selection-end-column="116" />
         </state>
       </provider>
     </entry>

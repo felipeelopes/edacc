@@ -57,9 +57,12 @@ int main(int argc, char *argv[]) {
                     break;
 
                 case 4:
-                    printf("Digite uma palavra para excluir\n");
-                    scanf('%c', &palavra);
-                    //excluir_palavras();
+                    printf("Digite o caminho e nome do arquivo, ex: /home/felipe/salvo.txt \n");
+                    scanf("%s", palavra);
+                    carregar_arquivo(lista, palavra);
+                    puts("Digite qualquer tecla para continuar...\n");
+                    getchar();getchar();
+
                     break;
 
                 case 5:

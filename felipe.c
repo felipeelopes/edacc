@@ -6,9 +6,9 @@
 
 
 struct Noh {
-    char palavra[1024];
+    char palavra[MAX_SIZE];
     struct Noh* proximo;
-    struct Lista* sublista;
+    struct Lista* sublista; // Armazena uma nova lista, para criar a sublista
 };
 typedef struct Noh Noh;
 
@@ -50,7 +50,7 @@ void ler_dir(Lista* l, const char *name) {
     while ((entrada = readdir(dir)) != NULL) {
 
         // Armazenar os caminhos encontrados
-        char caminho[1024];
+        char caminho[MAX_SIZE];
 
         // Caso seja diretorio
         if (entrada->d_type == DT_DIR) {
@@ -107,7 +107,7 @@ void ler_txt(Lista* l, const char* caminho){
         exit(1);
     }
 
-    char linha[500], *ch, *palavra, caminho_com_linha[1024];
+    char linha[MAX_SIZE], *ch, *palavra, caminho_com_linha[MAX_SIZE];
     int linha_atual = 0;
 
     // Percorrer o arquivo linha a linha
@@ -116,9 +116,7 @@ void ler_txt(Lista* l, const char* caminho){
         // Como o fgets faz a leitura linha a linha, vamos incrementar o contador para  sabermos em qual linha estamos
         ++linha_atual;
 
-        // Verificamos a existencia de quebra de linha e o substituimos
-        // strchr retorna o ponteiro do caractere, entao substituimos diretamente no registro.
-        // aplicado para a exibicao do debug nao ficar desconfigurada
+        // Necessario para nao pular uma linha desnecessaria.
         if(ch = strchr(linha, '\n')){
             *ch = '\0';
         }
@@ -132,7 +130,6 @@ void ler_txt(Lista* l, const char* caminho){
 
                 // Formatamos o caminho para conter o numero da linha, para seguir os requisitos da documentacao
                 snprintf(caminho_com_linha, sizeof(caminho_com_linha), "%s:%d", caminho, linha_atual);
-                //printf("%s --> %s\n", palavra, caminho_com_linha);
 
                 // Colocamos palavra e caminho:linha onde foi encontrada
                 inserir(l, palavra, caminho_com_linha);
@@ -162,7 +159,7 @@ bool overflow(const Lista* l) {
  * Para cada palavra criada, uma sublista tambem eh criada, para conter o caminho:linha
  * Caso a palavra seja repetida, somente seu caminho:linha eh adicionado na sublista
  * */
-void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
+Noh* inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
 
     // Fazemos uma busca para verificar se a palavra ja existe na lista
     Noh* busca_resultado = busca(l, palavra);
@@ -215,9 +212,11 @@ void inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
             n->proximo = l->cabeca;
             l->cabeca = n;
         }
+        return n;
     } else {
         // Caso a palavra ja exista na lista, devemos somente adicionar o caminho em que sua repetida foi achada.
         inserir_sublista(busca_resultado->sublista, caminho_com_linha);
+        return NULL;
     }
 }
 
@@ -247,6 +246,15 @@ void inserir_sublista(Lista* l, const char* caminho_com_linha){
         n->proximo = l->cabeca;
         l->cabeca = n;
     }
+}
+
+void destroi(Lista* l) {
+    while (!underflow(l)) {
+        Noh* n = l->cabeca;
+        l->cabeca = n->proximo;
+        free(n);
+    }
+    free(l);
 }
 
 void imprime(const Lista* l) {
@@ -326,7 +334,7 @@ void salvar(const Lista* l, const char* caminho_arquivo){
         // Faz leitura da lista
         while (np != NULL) {
             //Escrever o noh atual no arquivo
-            fprintf(arq, "%s*", np->palavra);
+            fprintf(arq, "%s;", np->palavra);
 
             // Faz a leitura da sub-lista caso exista
             if(!underflow(np->sublista)) {
@@ -357,4 +365,81 @@ void salvar(const Lista* l, const char* caminho_arquivo){
     fclose(arq);
 }
 
+void carregar_arquivo(Lista* l, const char* caminho_arquivo){
+    Noh* n = l->cabeca;
 
+    // Vamos apagar as sublistas
+    while (n != NULL) {
+         //Vamos apagar as informacoes da sublista caso exista alguma
+        if(!underflow(n->sublista)){
+            destroi(n->sublista);
+        }
+        n = n->proximo;
+    }
+
+    // Apagamos somente os nohs da lista mantendo a lista preservada
+    // para adicionarmos os valores contidos no banco de dados.
+    while (!underflow(l)) {
+        Noh* n = l->cabeca;
+        l->cabeca = n->proximo;
+        free(n);
+    }
+
+    // Agora inserimos na lista as informacoes conforme lido do arquivo salvo anteriormente
+    // Token ; separa as palavreas
+    // Toda primeira palavra encontrada sera o noh principal, se nao for a primeira palavra entra na sublista do Noh
+    // Caractere \n significa final de um registro, ir para o proximo e repetir
+
+    printf("Comecando a adicionar do arquivo\n");
+
+    FILE *arq;
+
+    // Abre o arquivo passado para leitura
+    arq = fopen(caminho_arquivo, "r");
+
+    char* palavra;
+    char* caminho;
+    char linha[MAX_SIZE];
+
+    if(arq == NULL){
+        printf("[ERRO] Falha ao abrir o arquivo informado\n");
+        exit(-1);
+    } else {
+
+        // Variavel para verificar em que palavra estamos
+        // Caso seja a primeira palavra entoa eh o Noh principal
+        // Caso seja maior que 1 adicionamos na sublista
+        int palavra_atual = 0;
+        char *caminho_linha, *ch;
+        char *palavra_tmp;
+
+
+        while ((fgets(linha, sizeof(linha), arq)) != NULL) {
+
+            // Necessario para nao pular uma linha no arquivo!
+            if(ch = strchr(linha, '\n')){
+                *ch = '\0';
+            }
+
+            palavra = strtok(linha, ";");
+            palavra_atual = 0;
+
+            Noh* tmp = cria();
+
+            //Le as palavras separadas
+            while (palavra) {
+                ++palavra_atual;
+
+                if(palavra_atual == 1){
+                    palavra_tmp = palavra;
+                    tmp = inserir(l, palavra_tmp, caminho_linha);
+                }
+                if(palavra_atual >= 2){
+                    inserir_sublista(tmp->sublista, palavra);
+                }
+
+                palavra = strtok(NULL, ";");
+            }
+        }
+    }
+}
