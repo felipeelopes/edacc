@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/felipe/Programas/clion-2018.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/bianca/Downloads/clion-2018.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/felipe/Programas/clion-2018.2.4/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/bianca/Downloads/clion-2018.2.5/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/felipe/Área de Trabalho/EstudoDouglas"
+CMAKE_SOURCE_DIR = /home/bianca/CLionProjects/edacc1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug"
+CMAKE_BINARY_DIR = /home/bianca/CLionProjects/edacc1/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/EstudoDouglas.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/EstudoDouglas.dir/flags.make
 
 CMakeFiles/EstudoDouglas.dir/main.c.o: CMakeFiles/EstudoDouglas.dir/flags.make
 CMakeFiles/EstudoDouglas.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/EstudoDouglas.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/EstudoDouglas.dir/main.c.o   -c "/home/felipe/Área de Trabalho/EstudoDouglas/main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bianca/CLionProjects/edacc1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/EstudoDouglas.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/EstudoDouglas.dir/main.c.o   -c /home/bianca/CLionProjects/edacc1/main.c
 
 CMakeFiles/EstudoDouglas.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/EstudoDouglas.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/felipe/Área de Trabalho/EstudoDouglas/main.c" > CMakeFiles/EstudoDouglas.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/bianca/CLionProjects/edacc1/main.c > CMakeFiles/EstudoDouglas.dir/main.c.i
 
 CMakeFiles/EstudoDouglas.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/EstudoDouglas.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/felipe/Área de Trabalho/EstudoDouglas/main.c" -o CMakeFiles/EstudoDouglas.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/bianca/CLionProjects/edacc1/main.c -o CMakeFiles/EstudoDouglas.dir/main.c.s
 
 CMakeFiles/EstudoDouglas.dir/felipe.c.o: CMakeFiles/EstudoDouglas.dir/flags.make
 CMakeFiles/EstudoDouglas.dir/felipe.c.o: ../felipe.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/EstudoDouglas.dir/felipe.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/EstudoDouglas.dir/felipe.c.o   -c "/home/felipe/Área de Trabalho/EstudoDouglas/felipe.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bianca/CLionProjects/edacc1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/EstudoDouglas.dir/felipe.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/EstudoDouglas.dir/felipe.c.o   -c /home/bianca/CLionProjects/edacc1/felipe.c
 
 CMakeFiles/EstudoDouglas.dir/felipe.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/EstudoDouglas.dir/felipe.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/felipe/Área de Trabalho/EstudoDouglas/felipe.c" > CMakeFiles/EstudoDouglas.dir/felipe.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/bianca/CLionProjects/edacc1/felipe.c > CMakeFiles/EstudoDouglas.dir/felipe.c.i
 
 CMakeFiles/EstudoDouglas.dir/felipe.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/EstudoDouglas.dir/felipe.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/felipe/Área de Trabalho/EstudoDouglas/felipe.c" -o CMakeFiles/EstudoDouglas.dir/felipe.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/bianca/CLionProjects/edacc1/felipe.c -o CMakeFiles/EstudoDouglas.dir/felipe.c.s
 
 # Object files for target EstudoDouglas
 EstudoDouglas_OBJECTS = \
@@ -95,7 +95,7 @@ EstudoDouglas: CMakeFiles/EstudoDouglas.dir/main.c.o
 EstudoDouglas: CMakeFiles/EstudoDouglas.dir/felipe.c.o
 EstudoDouglas: CMakeFiles/EstudoDouglas.dir/build.make
 EstudoDouglas: CMakeFiles/EstudoDouglas.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable EstudoDouglas"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bianca/CLionProjects/edacc1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable EstudoDouglas"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EstudoDouglas.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/EstudoDouglas.dir/clean:
 .PHONY : CMakeFiles/EstudoDouglas.dir/clean
 
 CMakeFiles/EstudoDouglas.dir/depend:
-	cd "/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/felipe/Área de Trabalho/EstudoDouglas" "/home/felipe/Área de Trabalho/EstudoDouglas" "/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug" "/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug" "/home/felipe/Área de Trabalho/EstudoDouglas/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/bianca/CLionProjects/edacc1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bianca/CLionProjects/edacc1 /home/bianca/CLionProjects/edacc1 /home/bianca/CLionProjects/edacc1/cmake-build-debug /home/bianca/CLionProjects/edacc1/cmake-build-debug /home/bianca/CLionProjects/edacc1/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/EstudoDouglas.dir/depend
 

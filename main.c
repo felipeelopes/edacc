@@ -65,26 +65,6 @@ int main(int argc, char *argv[]) {
 
                     break;
 
-                case 5:
-                    printf("Digite o caminho para inserir\n");
-                    scanf('%c', &caminho);
-                    //inserir_sublista(lista, caminho);
-                    break;
-
-                case 6:
-                    printf("Digite um caminho para excluir \n");
-                    scanf('%c', &caminho);
-                    //excluir_ocorrencias();
-                    break;
-
-                case 7:
-                    //salvar();
-                    break;
-
-                case 8:
-                    //recuperar();
-                    break;
-
                 default:
                     printf("Digite uma opcao valida\n");
             }

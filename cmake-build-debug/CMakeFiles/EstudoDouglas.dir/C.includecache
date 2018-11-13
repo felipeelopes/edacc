@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/felipe/Área de Trabalho/EstudoDouglas/felipe.c
+/home/bianca/CLionProjects/edacc1/felipe.c
 felipe.h
-/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
+/home/bianca/CLionProjects/edacc1/felipe.h
 
-/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
+/home/bianca/CLionProjects/edacc1/felipe.h
 unistd.h
 -
 sys/types.h
@@ -29,8 +29,4 @@ stdlib.h
 -
 ctype.h
 -
-
-/home/felipe/Área de Trabalho/EstudoDouglas/main.c
-felipe.h
-/home/felipe/Área de Trabalho/EstudoDouglas/felipe.h
 

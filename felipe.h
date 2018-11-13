@@ -38,5 +38,7 @@ Noh* inserir(Lista*, const char* palavra, const char*);
 void inserir_sublista(Lista*, const char*);
 void salvar(const Lista*, const char*);
 void carregar_arquivo(Lista*, const char*);
+Lista* lista_retira(Lista*, const char*);
+void atualizar(const Lista*, const char*, const char*, const char*);
 
 #endif //FELIPE_H
