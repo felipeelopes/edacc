@@ -449,23 +449,32 @@ void carregar_arquivo(Lista* l, const char* caminho_arquivo){
 
 void atualizar (const Lista* lista, const char *name, const char *palavra, const char *caminho) {
     Lista *copia_lista = lista;
-    Lista *atual2, *morto;
-    int flag = 0;
+    int i;
 
     while (lista != NULL) {
         memcpy(copia_lista, lista, __size_t(lista)); //cria uma copia da lista
     }
 
-    ler_dir(lista, name); //le novamente o diretorio
-    ler_txt(lista, caminho); // le novamente os arquivos
+
+
     Noh *atual = lista->cabeca;
-    Noh *ant = copia_lista->cabeca;
+    Noh *copia = copia_lista->cabeca;
 
-    if (atual->palavra != ant->palavra) { // compara cada palavra das duas listas, caso nao tenha - ele insere
-        inserir(lista, palavra, caminho);
+    for(i=0 ;i < __size_t(lista); i++) {
+        ler_dir(lista, name);  //le novamente o diretorio
+        ler_txt(lista, caminho); // le novamente os arquivos
+        if (busca(copia_lista, palavra) == 1) {
+            inserir(lista, palavra, caminho);
 
-    } else
-        lista_retira(lista, palavra);
+        }
+    }
+    while(copia_lista != NULL){
+        if(copia->palavra != atual->palavra){
+            lista_retira(lista, palavra)
+        }
+        atual = atual->proximo;
+        copia = copia->proximo;
+    }
 
 
 }
