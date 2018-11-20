@@ -482,7 +482,7 @@ void atualizar (const Lista* lista, const char *name, const char *palavra, const
 /* função retira: retira elemento da lista */
 Lista* lista_retira (Lista* lista, const char* palavra) {
     Noh *a = NULL; // ponteiro para elemento anterior
-    Noh *p = lista; // ponteiro para percorrer a lista
+    Noh *p = lista->cabeca; // ponteiro para percorrer a lista
 
     // procura elemento na lista, guardando anterior
     while (p != NULL && p->palavra != palavra) {
@@ -493,10 +493,10 @@ Lista* lista_retira (Lista* lista, const char* palavra) {
     if (p == NULL)// verifica se achou elemento
         return lista; // não achou: retorna lista original
 
-    if (a == NULL) { // retira elemento
-        lista = p->proximo; // retira elemento do inicio
+    if (a != NULL) { // retira elemento
+        a->proximo = p->proximo; // retira elemento do inicio
     } else {// retira elemento do meio da lista
-        a->proximo = p->proximo;
+       lista->cabeca = p->proximo;
     }
     free(p);
     return lista;
