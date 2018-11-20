@@ -14,8 +14,7 @@
     <list default="true" id="4e6bdd48-f65a-4fc8-bca6-88dfdd95ffc0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/felipe.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/felipe.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EstudoDouglas" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/EstudoDouglas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EstudoDouglas.dir/felipe.c.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/felipe.c" beforeDir="false" afterPath="$PROJECT_DIR$/felipe.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -24,6 +23,20 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FUSProjectUsageTrigger">
@@ -87,23 +100,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="1817" />
+          <entry key="c" value="1914" />
           <entry key="h" value="123" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="1940" />
+          <entry key="ObjectiveC" value="2037" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.37" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
     </session>
@@ -113,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+            <state relative-caret-position="274">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -122,8 +137,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/felipe.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="475" column="31" selection-start-line="475" selection-start-column="31" selection-end-line="475" selection-end-column="31" />
+            <state relative-caret-position="235">
+              <caret line="465" column="45" lean-forward="true" selection-start-line="465" selection-start-column="45" selection-end-line="465" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -146,7 +161,6 @@
     <findStrings>
       <find>ch</find>
       <find>n-</find>
-      <find>cria</find>
       <find>Inserin</find>
       <find>busca</find>
       <find>word</find>
@@ -159,6 +173,9 @@
       <find>ch = '\0';</find>
       <find>1024</find>
       <find>memcpy</find>
+      <find>over</find>
+      <find>under</find>
+      <find>cria</find>
     </findStrings>
     <replaceStrings>
       <replace>palavra</replace>
@@ -171,8 +188,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/felipe.h" />
+        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/felipe.c" />
       </list>
     </option>
@@ -262,7 +279,9 @@
       <workItem from="1541635883222" duration="1538000" />
       <workItem from="1541710596374" duration="1200000" />
       <workItem from="1542148607056" duration="3177000" />
-      <workItem from="1542576325178" duration="1915000" />
+      <workItem from="1542576325178" duration="2651000" />
+      <workItem from="1542672676064" duration="155000" />
+      <workItem from="1542751832409" duration="1757000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionado argumentos ao software. Agora é necessário passar o caminho do diretório no executável.">
       <created>1540991432457</created>
@@ -313,11 +332,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542148953714</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="..">
+      <created>1542578298886</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542578298886</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81943000" />
+    <option name="totallyTimeSpent" value="84591000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,21 +363,21 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996016" weight="0.22204968" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49800798" weight="0.22204968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3987034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4996016" weight="0.32919255" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4996016" weight="0.32763976" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5011952" side_tool="true" visible="true" weight="0.27173913" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.69721115" visible="true" weight="0.18012422" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.30278885" side_tool="true" visible="true" weight="0.18012422" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4996016" weight="0.32919255" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49880478" visible="true" weight="0.27173913" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49561754" weight="0.27018633" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32919255" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32988048" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" weight="0.27045456" />
@@ -435,13 +461,6 @@
     </entry>
     <entry file="file://$USER_HOME$/txt/a.txt" />
     <entry file="file://$USER_HOME$/txt/b.txt" />
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/felipe.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -452,10 +471,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/felipe.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="475" column="31" selection-start-line="475" selection-start-column="31" selection-end-line="475" selection-end-column="31" />
+        <state relative-caret-position="235">
+          <caret line="465" column="45" lean-forward="true" selection-start-line="465" selection-start-column="45" selection-end-line="465" selection-end-column="45" />
         </state>
       </provider>
     </entry>

@@ -448,13 +448,12 @@ void carregar_arquivo(Lista* l, const char* caminho_arquivo){
 
 
 void atualizar (const Lista* lista, const char *name, const char *palavra, const char *caminho) {
-    Lista *copia_lista = lista;
+    Lista *copia_lista = cria();
     int i;
 
-    while (lista != NULL) {
+    while (!underflow(lista)) {
         memcpy(copia_lista, lista, __size_t(lista)); //cria uma copia da lista
     }
-
 
 
     Noh *atual = lista->cabeca;
@@ -468,9 +467,9 @@ void atualizar (const Lista* lista, const char *name, const char *palavra, const
 
         }
     }
-    while(copia_lista != NULL){
+    while(!underflow(copia_lista)){
         if(copia->palavra != atual->palavra){
-            lista_retira(lista, palavra)
+            lista_retira(lista, palavra);
         }
         atual = atual->proximo;
         copia = copia->proximo;
