@@ -7,7 +7,9 @@
 
 struct Noh {
     char palavra[MAX_SIZE];
+    char local[MAX_SIZE]; // tive que guardar o caminho onde foi encontrado para sincronizacao das listas
     struct Noh* proximo;
+    struct Noh* anterior;
     struct Lista* sublista; // Armazena uma nova lista, para criar a sublista
 };
 typedef struct Noh Noh;
@@ -138,7 +140,6 @@ void ler_txt(Lista* l, const char* caminho){
         }
     }
     fclose(txt);
-    free(txt);
 }
 
 bool underflow(const Lista* l) {
@@ -174,9 +175,11 @@ Noh* inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
 
         // Copia a palavra passada pelo parametro para o noh criado
         strcpy(n->palavra, palavra);
+        strcpy(n->local, caminho_com_linha);
 
-        // Define o proximo Noh do novo Noh como NULL
+        // Define o proximo e anterior Noh do novo Noh como NULL
         n->proximo = NULL;
+        n->anterior = NULL;
         ++l->total_palavras;
 
         // Caso a lista nao esteja vazia temos que buscar a posicao em ordem alfabetica para inserir o novo Noh
@@ -195,12 +198,16 @@ Noh* inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
 
                     // Marco o proximo elemento do noh que estou adicionando como a prox palavra
                     n->proximo = u->proximo;
+                    n->anterior = u;
+                    u->proximo->anterior = n;
                     u->proximo = n;
 
                     // Paro o loop pois ja adicionei a palavra na lista
                     break;
                 } else if(u->proximo == NULL){ // Se chegar aqui significa que estou no ultimo Noh, entao so adicionamos a palavra
                     u->proximo = n;
+                    n->anterior = u;
+                    break;
                 }
 
                 // Andamos para o proximo elemento do da lista
@@ -208,7 +215,8 @@ Noh* inserir(Lista* l, const char* palavra, const char* caminho_com_linha){
             }
 
             u->proximo = n;
-        } else {
+        } else { // No inicio da lista. Entra aqui somente se a lista estiver vazia
+            n->anterior = NULL;
             n->proximo = l->cabeca;
             l->cabeca = n;
         }
@@ -233,16 +241,19 @@ void inserir_sublista(Lista* l, const char* caminho_com_linha){
 
     // Define o proximo Noh do novo Noh como NULL
     n->proximo = NULL;
+    n->anterior = NULL;
     ++l->total_palavras;
 
-    // Caso a lista nao esteja vazia temos que buscar a posicao em ordem alfabetica para inserir o novo Noh
+    // Caso a lista nao esteja vazia adicionamos no final
     if (!underflow(l)) {
         Noh* u = l->cabeca;
         while (u->proximo != NULL) {
             u = u->proximo;
         }
         u->proximo = n;
-    } else {
+        n->anterior = u;
+    } else { // Caso a lista esteja vazia adicionamos no comeco
+        n->anterior = NULL;
         n->proximo = l->cabeca;
         l->cabeca = n;
     }
@@ -359,6 +370,7 @@ void salvar(const Lista* l, const char* caminho_arquivo){
             np = np->proximo;
         }
     } else {
+
         printf("[ERRO] Falha ao salvar o arquivo, verifique as permissoes do diretorio\n");
     }
     printf("\n\n[INFO] Arquivo salvo com sucesso no caminho: %s\n", caminho_arquivo);
@@ -441,5 +453,83 @@ void carregar_arquivo(Lista* l, const char* caminho_arquivo){
                 palavra = strtok(NULL, ";");
             }
         }
+    }
+}
+
+/*
+ * Funcao responsavel por sincronizar duas listas. Uma lida no momento da requisicao da atualizacao
+ * e a outra lista, criada anterioemente.
+ * */
+void sincronizar(Lista* l, const char* caminho){
+    puts("iniciando");
+    // Criamos uma lista temporaria para releitura do diretorio e posteriormente sincronizacao
+    Lista *tmp = cria();
+    ler_dir(tmp, caminho);
+
+    // Removendo elementos
+    Noh* u = l->cabeca;
+
+    while (u != NULL) {
+        puts("w1");
+        Noh* elemento = busca(tmp, u->palavra);
+        // Quer dizer que a palavra ainda existe e tenho que verificar a sublista
+        if(elemento != NULL){
+            puts("i11");
+            if(!(underflow(elemento->sublista))){
+                Noh* s = elemento->sublista->cabeca;
+                puts("12");
+                while (s != NULL) {
+                    puts("13");
+                    Noh *selemento = busca(elemento->sublista, s->palavra);
+                    if (selemento == NULL) { // O Caminho nao existe mais, entao vamos remover
+                        Noh *saux = s;
+                        s->anterior->proximo = saux->proximo;
+                        s->proximo->anterior = saux->anterior;
+                        saux->proximo = NULL;
+                        saux->anterior = NULL;
+                    }
+                    s = s->proximo;
+                }
+            }
+        } else { //Quer dizer que a palavra nao existe mais, entao posso remover
+            puts("else");
+            Noh* aux = u;
+            u->anterior->proximo = aux->proximo;
+            u->proximo->anterior = aux->anterior;
+            aux->proximo = NULL;
+            aux->anterior = NULL;
+            free(aux->sublista);
+            free(aux);
+        }
+        u = u->proximo;
+    }
+
+    // Adicionando elementos
+    Noh* n = tmp->cabeca;
+    while(n->proximo != NULL){
+        Noh* elemento = busca(l, n->palavra);
+        if(elemento != NULL){
+            Noh* ns = n->sublista->cabeca;
+            if(ns != NULL) {
+                while (ns->proximo != NULL){
+                    Noh *busca_caminho = busca(elemento->sublista, ns->palavra);
+                    if (busca_caminho == NULL) {
+                        inserir_sublista(elemento->sublista, ns->palavra);
+                    }
+                    ns = ns->proximo;
+                }
+            }
+        } else {
+            // Inserir nova palavra no noh, salvando o noh inserido para uso posterior
+            Noh* inserido = inserir(l, n->palavra, n->local);
+
+            // inserir todas as outras ocorrencias da nova palavra
+            Noh* ns = n->sublista->cabeca;
+            while (ns->proximo != NULL){
+                inserir_sublista(inserido->sublista, ns->palavra);
+                ns = ns->proximo;
+            }
+        }
+        n = n->proximo;
     }
 }

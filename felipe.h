@@ -38,5 +38,6 @@ Noh* inserir(Lista*, const char* palavra, const char*);
 void inserir_sublista(Lista*, const char*);
 void salvar(const Lista*, const char*);
 void carregar_arquivo(Lista*, const char*);
+void sincronizar(Lista*, const char*);
 
 #endif //FELIPE_H

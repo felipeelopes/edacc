@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
                     break;
 
                 case 2:
-                    //atualizar();
+                    sincronizar(lista, argv[1]);
                     break;
 
                 case 3:
